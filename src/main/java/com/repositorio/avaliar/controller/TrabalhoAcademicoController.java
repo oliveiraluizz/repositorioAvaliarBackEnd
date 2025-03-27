@@ -5,8 +5,8 @@ import com.repositorio.avaliar.service.TrabalhoAcademicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -20,6 +20,26 @@ public class TrabalhoAcademicoController {
     @GetMapping
     public ResponseEntity<List<TrabalhoAcademico>> listarTrabalhos() {
         return ResponseEntity.ok(service.listarTrabalhos());
+    }
+
+    @GetMapping("/top-orientadores")
+    public List<Map<String, Object>> getTopOrientadores() {
+        return service.getTopOrientadores();
+    }
+
+    @GetMapping("/top-universidades")
+    public List<Map<String, Object>> getTopUniversidades() {
+        return service.getTopUniversidades();
+    }
+
+    @GetMapping("/tipo-producao-count")
+    public List<Map<String, Object>> getTipoProducaoCount() {
+        return service.getTipoProducaoCount();
+    }
+
+    @GetMapping("/palavras-chave")
+    public Map<String, Long> getPalavrasChaveMaisFrequentes() {
+        return service.getPalavrasChaveMaisFrequentes();
     }
 
     @GetMapping("/{id}")

@@ -3,19 +3,26 @@ package com.repositorio.avaliar;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.repositorio.avaliar.controller.TrabalhoAcademicoController;
 import com.repositorio.avaliar.model.TrabalhoAcademico;
+import com.repositorio.avaliar.repository.TrabalhoAcademicoRepository;
 import com.repositorio.avaliar.service.TrabalhoAcademicoService;
+import com.repositorio.avaliar.service.TrabalhoAcademicoServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
-
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -30,10 +37,11 @@ public class TrabalhoAcademicoControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private TrabalhoAcademicoService service;
+    private TrabalhoAcademicoService service; // Só mocka a interface
 
     @Autowired
     private ObjectMapper objectMapper;
+
 
     private TrabalhoAcademico criarTrabalhoAcademico(UUID id) {
         return new TrabalhoAcademico(
@@ -117,4 +125,7 @@ public class TrabalhoAcademicoControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
     }
+
+
+
 }
