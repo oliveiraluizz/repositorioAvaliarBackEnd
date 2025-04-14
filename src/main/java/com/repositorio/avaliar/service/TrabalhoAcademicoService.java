@@ -15,4 +15,5 @@ public interface TrabalhoAcademicoService {
     List<Map<String, Object>> getTopUniversidades();
     List<Map<String, Object>> getTipoProducaoCount();
     Map<String, Long> getPalavrasChaveMaisFrequentes();
+    List<Map<String, Object>> getTipoProducaoPerYear();
 }

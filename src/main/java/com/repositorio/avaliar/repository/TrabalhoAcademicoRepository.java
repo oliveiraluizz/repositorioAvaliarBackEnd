@@ -21,4 +21,7 @@ public interface TrabalhoAcademicoRepository extends JpaRepository<TrabalhoAcade
     @Query("SELECT t.tipoProducao, COUNT(t) FROM TrabalhoAcademico t GROUP BY t.tipoProducao")
     List<Object[]> countByTipoProducao();
 
+    @Query("SELECT t.tipoProducao, t.ano, COUNT(t) FROM TrabalhoAcademico t GROUP BY t.tipoProducao, t.ano")
+    List<Object[]> countByTipoProducaoPerYear();
+
 }

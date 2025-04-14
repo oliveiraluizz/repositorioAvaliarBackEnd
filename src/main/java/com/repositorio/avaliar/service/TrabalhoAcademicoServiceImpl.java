@@ -94,5 +94,14 @@ public class TrabalhoAcademicoServiceImpl implements TrabalhoAcademicoService {
                         (e1, e2) -> e1, LinkedHashMap::new));
     }
 
-
+    @Override
+    public List<Map<String, Object>> getTipoProducaoPerYear() {
+        return repository.countByTipoProducaoPerYear().stream()
+                .map(record -> Map.of(
+                        "tipoProducao", record[0],
+                        "ano", record[1],
+                        "count", record[2]
+                ))
+                .collect(Collectors.toList());
+    }
 }

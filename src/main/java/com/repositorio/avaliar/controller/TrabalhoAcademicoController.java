@@ -62,4 +62,9 @@ public class TrabalhoAcademicoController {
         service.deletarTrabalho(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/tipo-producao-per-year")
+    public List<Map<String, Object>> getTipoProducaoPerYear() {
+        return service.getTipoProducaoPerYear();
+    }
 }
